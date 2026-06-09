@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project 2 Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #060a12;
+    font-family: 'Sora', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .banner {
+    width: 900px;
+    background: linear-gradient(135deg, #0b1120 0%, #0f1a2e 50%, #0b1120 100%);
+    border: 1px solid #1e2f50;
+    border-radius: 16px;
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid background */
+  .banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* Glow orbs */
+  .orb1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124,111,255,0.12) 0%, transparent 70%);
+    top: -80px;
+    right: -60px;
+    pointer-events: none;
+  }
+  .orb2 {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(56,189,248,0.10) 0%, transparent 70%);
+    bottom: -60px;
+    left: 40px;
+    pointer-events: none;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .series-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #38bdf8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .dot-active {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 6px #22c55e;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .project-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #3a4a6b;
+    letter-spacing: 0.1em;
+  }
+
+  .hero {
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #7c6fff;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #eef2ff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  h1 span {
+    background: linear-gradient(90deg, #38bdf8, #7c6fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #6a7a9b;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, #1e2f50, #2e3f60, #1e2f50);
+    margin: 28px 0;
+  }
+
+  .services-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .service-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+
+  .pill-blue { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); color: #38bdf8; }
+  .pill-purple { background: rgba(124,111,255,0.08); border: 1px solid rgba(124,111,255,0.2); color: #7c6fff; }
+  .pill-orange { background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.2); color: #fb923c; }
+  .pill-green { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); color: #22c55e; }
+  .pill-pink { background: rgba(244,114,182,0.08); border: 1px solid rgba(244,114,182,0.2); color: #f472b6; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1e2f50;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: #eef2ff;
+    margin-bottom: 4px;
+  }
+
+  .stat-value.green { color: #22c55e; }
+  .stat-value.blue { color: #38bdf8; }
+  .stat-value.purple { color: #7c6fff; }
+  .stat-value.orange { color: #fb923c; }
+
+  .stat-label {
+    font-size: 11px;
+    color: #3a4a6b;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #1e2f50;
+  }
+
+  .author {
+    font-size: 13px;
+    color: #4a5a7b;
+    font-weight: 300;
+  }
+
+  .author strong {
+    color: #8a9abf;
+    font-weight: 500;
+  }
+
+  .difficulty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .diff-dots { display: flex; gap: 4px; }
+  .d { width: 8px; height: 8px; border-radius: 50%; }
+  .d-on { background: #f59e0b; }
+  .d-off { background: #1e2f50; }
+
+  .diff-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #4a5a7b;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .time-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #4a5a7b;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1e2f50;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="content">
+
+    <div class="top-row">
+      <div class="series-badge">
+        <span class="dot-active"></span>
+        AWS Cloud Security — 5 Core Projects
+      </div>
+      <span class="project-num">02 / 05</span>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">Network Security · Data Protection</div>
+      <h1>Secure VPC with <span>WAF, Shield</span><br>&amp; Network Firewall</h1>
+      <p class="subtitle">Built a production-grade network security perimeter using layered defenses — VPC segmentation, OWASP rule sets, stateful packet inspection, and real-time threat analysis with Athena.</p>
+    </div>
+
+    <div class="services-row">
+      <span class="service-pill pill-blue">VPC / NACLs / SGs</span>
+      <span class="service-pill pill-purple">AWS WAF</span>
+      <span class="service-pill pill-orange">Network Firewall</span>
+      <span class="service-pill pill-blue">VPC Flow Logs</span>
+      <span class="service-pill pill-green">Amazon Athena</span>
+      <span class="service-pill pill-pink">Shield Standard</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-value green">6</div>
+        <div class="stat-label">Defense Layers</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value blue">20</div>
+        <div class="stat-label">Threats Detected</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value purple">8</div>
+        <div class="stat-label">WAF Rule Groups</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value orange">14</div>
+        <div class="stat-label">Steps Completed</div>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <span class="author">by <strong>Muhammad Ahmad</strong> · 2026</span>
+      <div class="difficulty">
+        <div class="diff-dots">
+          <div class="d d-on"></div>
+          <div class="d d-on"></div>
+          <div class="d d-off"></div>
+        </div>
+        <span class="diff-text">Intermediate</span>
+      </div>
+      <span class="time-badge">~4–6 hrs</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
